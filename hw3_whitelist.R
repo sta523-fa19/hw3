@@ -1,14 +1,7 @@
-allowed_files <- c("hw3.Rmd",
-                  "hw3.md",
-                  "README.md",
-                  "wercker.yml",
-                  "hw3.Rproj",
-                  "hw3_whitelist.R",
-                  "map.png",
-                  ".gitignore")
+library(stringr)
 
 files <- dir()
-disallowed_files <- files[!(files %in% allowed_files)]
+disallowed_files <- files[!str_detect(files, ".*\\.(Rmd|md|yml|css|R|gitignore|png|Rproj|csv)")]
 
 if (length(disallowed_files != 0)) {
   cat("Disallowed files found:\n")
